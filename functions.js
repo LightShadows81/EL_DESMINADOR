@@ -1,3 +1,4 @@
+var totalRevelee=0;
 class Cell{
   constructor(i,j,l) {
     this.x = i*l;
@@ -5,18 +6,25 @@ class Cell{
     this.l = l;
     this.i = i;
     this.j = j;
-
     this.revelee = false;
     this.bombe = false;
     this.bombe_voisine = 0;
     this.drapeau = false;
+    this.win = false;
   }
 
   show() {
+    if (totalRevelee==100){
+      this.win = true;
+    }
     stroke(0);
     noFill();
     rect(this.x, this.y, this.l, this.l);
 
+    if(this.win){
+      createCanvas(401,401);
+      background(0,255,0);
+    }
     if(this.revelee){
         if(this.drapeau){
           fill(0);
@@ -26,8 +34,10 @@ class Cell{
             fill(120);
             ellipse(this.x+this.l*0.5,this.y+this.l*0.5,this.l*0.5);
             }else {
+
               fill(200);
               rect(this.x, this.y, this.l, this.l);
+
               if (this.bombe_voisine > 0) {
                 textAlign(CENTER);
                 fill(0);
@@ -47,6 +57,7 @@ class Cell{
 
   revele() {
     this.revelee = true;
+    totalRevelee=totalRevelee+1;
     if (this.bombe_voisine == 0) {
       this.remplissage();
     }
@@ -96,7 +107,9 @@ class Cell{
   this.drapeau = true;
  }
 
+
 }
+
 
 function gameOver(){
   for (var i = 0; i < ligne; i++) {
