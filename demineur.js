@@ -3,7 +3,6 @@ var grille = new Array();
 var l = 20;
 var colonne = 10;
 var ligne = 10;
-var totalBees = 3;
 
 function setup(){
   createCanvas(401,401);
@@ -18,12 +17,11 @@ function setup(){
     }
   }
 
-  for (var n = 0; n < totalBees; n++) {
+  for (var n = 0; n < totalBombes; n++) {
     var index = floor(random(options.length));
     var choice = options[index];
     var i = choice[0];
     var j = choice[1];
-    // Deletes that spot so it's no longer an option
     options.splice(index, 1);
     grille[i][j].bombe = true;
   }
@@ -49,6 +47,7 @@ function initialise(){
 }
 
 function mousePressed() {
+
   for (var i = 0; i < ligne; i++) {
     for (var j = 0; j < colonne; j++) {
       if (grille[i][j].contenant(mouseX, mouseY)) {
@@ -63,16 +62,13 @@ function mousePressed() {
 }
 
 function keyPressed() {
-  if (keyCode = ENTER){
     for (var i = 0; i < ligne; i++) {
       for (var j = 0; j < colonne; j++) {
         if (grille[i][j].contenant(mouseX, mouseY)) {
           grille[i][j].drap();
-          grille[i][j].revele();
         }
       }
     }
-  }
 }
 
 
