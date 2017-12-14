@@ -1,11 +1,13 @@
-var totalBombes = 10;
+var totalBombes = 5;
 var grille = new Array();
 var l = 20;
-var colonne = 10;
-var ligne = 10;
+var colonne;
+var ligne;
 
 function setup(){
   createCanvas(401,401);
+  colonne = floor(width / l);
+  ligne = floor(height / l);
   background(50,50,50);
   noStroke();
   initialise();
@@ -76,7 +78,7 @@ function draw() {
   background(255);
   for (var i = 0; i < ligne; i++) {
     for (var j = 0; j < colonne; j++) {
-      grille[i][j].show();
+      grille[i][j].show(totalBombes);
     }
   }
 }
